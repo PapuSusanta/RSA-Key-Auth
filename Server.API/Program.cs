@@ -34,7 +34,6 @@ builder.Services.AddAuthentication(op =>
         OnMessageReceived = ctx =>
         {
             ctx.Request.Cookies.TryGetValue("JWT_KEY", out var token);
-            Console.WriteLine(token);
             if (!string.IsNullOrEmpty(token))
             {
                 ctx.Token = token;
@@ -101,7 +100,5 @@ app.MapGet("api/Protected", () =>
 {
     return Results.Ok("Very secure data");
 }).RequireAuthorization();
-
-
 
 app.Run();
